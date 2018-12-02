@@ -1,0 +1,19 @@
+{
+  "name": "prj",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Main.js",
+  "scripts": {
+    "test": "node Main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladigit/PRJ.git"
+  },
+  "author": "Vladigit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladigit/PRJ/issues"
+  },
+  "homepage": "https://github.com/Vladigit/PRJ#readme"
+}
