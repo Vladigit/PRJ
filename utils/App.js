@@ -1,8 +1,8 @@
 "use strict";
 class App {
     constructor (port, hostname) {
-        this._hostname = hostname || '127.0.0.1'
-        this._port = port || 3000
+        this._hostname = process.env.HOST || hostname || '127.0.0.1'
+        this._port = process.env.PORT || port || 3000
         let modules = { 
             express: require('express'),
             http: require('http'),
@@ -82,8 +82,9 @@ class App {
     }
     
     run() {
-        this.server.listen(this._port, this._hostname)
-        console.log('Server is created!')
+        this.server.listen(this._port, this._hostname, () => {
+            console.log('Server is created!')
+        })
     }
 }
 
