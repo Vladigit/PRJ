@@ -15,7 +15,7 @@ class App {
 
         this.app = modules.express()
         this.server = modules.http.createServer(this.app)
-
+        
         this.app.use(modules.bodyParser.json())
         this.app.use(modules.bodyParser.text())
         
@@ -72,12 +72,12 @@ class App {
         }
     }
 
-    WS(path , callback) {
+    WS(path, callback) {
         if (typeof path === 'string') {
             let nsp = this.io.of(path)
-            callback.call(nsp)
+            callback(nsp)
         } else {
-            callback.call(this.io)
+            callback(this.io)
         }
     }
     
@@ -85,7 +85,8 @@ class App {
         let host = process.env.HOST || this._hostname || '127.0.0.1',
             port = process.env.PORT || this._port || 3000
         this.server.listen(port, host, () => {
-            console.log('Server is created!')
+            console.log(`Server is created!
+            http://${host}:${port}/`)
         })
     }
 }
