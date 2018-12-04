@@ -4,7 +4,9 @@
   "description": "",
   "main": "Main.js",
   "scripts": {
-    "serv": "node Main"
+    "serv": "node Main",
+    "pack-w": "webpack --watch --mode development",
+    "production": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/Vladigit/PRJ#readme",
   "dependencies": {
+    "autoprefixer": "^9.4.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
@@ -37,6 +40,7 @@
     "less-loader": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.26.1"
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
   }
 }

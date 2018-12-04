@@ -18,7 +18,7 @@ app.WS(null, function(io) {
 app.Rest({
     '/': {
         get: (req, res) => {
-            res.sendFile(__dirname + '/index.html')
+            res.sendFile(__dirname + '/views/index.html')
         }
     }
 })
