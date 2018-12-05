@@ -20,11 +20,13 @@ class DBConnector {
     }
 
     Query(queryFunc) {
+        if (typeof this.conection === 'function') {
         this._queF = queryFunc
-        this.conection(this._lexEnv.bind(this))  
+        this.conection(this._lexEnv.bind(this))
+        } else {
+            queryFunc.call(this.conection)
+        }
     }
 }
 
-module.exports = {
-    DBConnector
-}
+module.exports = DBConnector

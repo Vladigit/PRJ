@@ -49,6 +49,7 @@ class App {
             for(let value of callback) {
                 if (typeof value === 'function') {
                     this.app.use(value)
+                    
                 } else if (typeof value === 'object') {
                     for (let path in value) {
                         this.app.use(path, value[path])
@@ -62,10 +63,19 @@ class App {
 
     Rest(Restful) {
         for(var path in Restful) {
+
             if (typeof Restful[path] === 'function') {
                 this.app.get(path, Restful[path])
+                
+            } else if(Array.isArray(Restful[path])) {
+                this.app.get(path, ...Restful[path])
+
             } else {
                 for(let method in Restful[path]) {
+                    if(Array.isArray(Restful[path][method])) {
+                        this.app[method](path, ...Restful[path][method])
+                    }
+
                     this.app[method](path, Restful[path][method])
                 }
             }
@@ -84,6 +94,7 @@ class App {
     run() {
         let host = process.env.HOST || this._hostname || '127.0.0.1',
             port = process.env.PORT || this._port || 3000
+
         this.server.listen(port, host, () => {
             console.log(`Server is created!
             http://${host}:${port}/`)
