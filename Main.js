@@ -30,7 +30,21 @@ app.Rest({
         get: (req, res) => {
             res.sendFile(__dirname + '/views/index.html')
         }
-    }
+    },
+    '/usersRating': (req, res) => {
+        db.Query(function () {
+            let sql = 'SELECT id, name, score FROM users ORDER BY score LIMIT 10'
+            this.query(sql, (err, result) => {
+                if (err) throw err;
+                res.send(JSON.stringify(result))
+                console.log(result)
+            })
+        })
+    },
+    '/reg': {
+        get: (req, res) => res.sendFile(__dirname + '/views/reg.html')
+    },
+    '/*': (req, res) => res.status(404).send('404 Not found')
 })
 
 app.run()
