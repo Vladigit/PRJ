@@ -42,8 +42,34 @@ app.Rest({
         })
     },
     '/reg': {
-        get: (req, res) => res.sendFile(__dirname + '/views/reg.html')
+        get: (req, res) => res.sendFile(__dirname + '/views/reg.html'),
+        post: (req, res) => {
+            console.log(req.body)
+
+            let {name, pass, age} = req.body
+            let values = [name, age, pass]
+
+            db.Query(function () {
+                let sql = 'SELECT * FROM users WHERE name = ?'
+                this.query(sql, [name], (err, result) => {
+                    if (!result.length) {
+
+                        db.Query(function () {
+                            let sql = 'INSERT INTO users (name, age, pass) values (?, ?, ?)'
+                            this.query(sql, values, (err, result) => {
+                                if (err) throw err;
+                                res.redirect('/account')
+                            })
+                        })
+
+                    } else {
+                        res.status(404).end();
+                    }
+                })
+            })
+        }
     },
+    '/account': (req, res) => res.send('Hello'),
     '/*': (req, res) => res.status(404).send('404 Not found')
 })
 

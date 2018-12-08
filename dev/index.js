@@ -18,6 +18,7 @@ class App extends PureComponent {
         return(
         <div>
             <h1 onClick={this.headerHandler}>Hello React</h1>
+            <a href='/reg'>Create New User</a>
             <Rating />
         </div>
         )

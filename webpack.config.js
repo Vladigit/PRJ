@@ -2,7 +2,8 @@ var path = require('path')
 
 let conf = {
     entry: {
-        index: './dev/index.js'
+        index: './dev/index.js',
+        reg: './dev/reg.js'
     },
     output: {
         path: path.resolve(__dirname, 'public'),
